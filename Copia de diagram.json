@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "author": "Proyecto bus escolar",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "board-mfrc522", "id": "rfid1", "top": -170, "left": -190, "attrs": {} },
+    { "type": "chip-gps-neo6m", "id": "gps1", "top": -60, "left": 190, "attrs": {} },
+    { "type": "wokwi-buzzer", "id": "bz1", "top": 200, "left": -120, "attrs": { "volume": "0.1" } },
+    { "type": "wokwi-led", "id": "led1", "top": 190, "left": 130, "attrs": { "color": "green" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 150, "left": 90, "rotate": 90, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "rfid1:3.3V", "esp:3V3", "red", [ "h0" ] ],
+    [ "rfid1:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "rfid1:SDA", "esp:5", "green", [ "h0" ] ],
+    [ "rfid1:SCK", "esp:18", "orange", [ "h0" ] ],
+    [ "rfid1:MOSI", "esp:23", "blue", [ "h0" ] ],
+    [ "rfid1:MISO", "esp:19", "purple", [ "h0" ] ],
+    [ "rfid1:RST", "esp:21", "yellow", [ "h0" ] ],
+
+    [ "gps1:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "gps1:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "gps1:TX", "esp:16", "green", [ "h0" ] ],
+    [ "gps1:RX", "esp:17", "blue", [ "h0" ] ],
+
+    [ "bz1:1", "esp:GND.2", "black", [ "h0" ] ],
+    [ "bz1:2", "esp:25", "red", [ "h0" ] ],
+
+    [ "esp:26", "r1:1", "green", [ "h0" ] ],
+    [ "r1:2", "led1:A", "green", [ "h0" ] ],
+    [ "led1:C", "esp:GND.3", "black", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
