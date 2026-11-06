@@ -1,0 +1,10 @@
+# Archivos del sistema
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+venv/
+env/
